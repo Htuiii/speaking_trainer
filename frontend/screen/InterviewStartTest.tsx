@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeColors } from '../theme/colors';
 import { CountdownCircle } from '../components/CountdownCircle';
 
-interface InterviewProcessProps {
+interface InterviewStartTestProps {
   colors: ThemeColors;
   s: Record<string, React.CSSProperties>;
   topicTitle: string;
@@ -13,7 +13,7 @@ interface InterviewProcessProps {
 
 const COUNTDOWN_SECONDS = 5;
 
-export const InterviewProcess: React.FC<InterviewProcessProps> = ({
+export const InterviewStartTest: React.FC<InterviewStartTestProps> = ({
   colors,
   s,
   topicTitle,
@@ -32,6 +32,7 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', flex: 1, minHeight: 0 }}>
+      {/* Page header */}
       <div style={s.topContent}>
         <div style={{ flex: 1 }}>
           <h1 style={s.h1}>ЕГЭ; Задание 3. Interview</h1>
@@ -42,7 +43,7 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
       <div style={{ ...s.whiteSheet, margin: 0, flex: 1, padding: '40px', display: 'flex', flexDirection: 'column' }}>
         <div style={cardStyle}>
           <div style={countdownBoxStyle}>
-            <h2 style={countdownTitleStyle}>Be ready for the test</h2>
+            <h2 style={countdownTitleStyle}>Be ready to answer</h2>
             <div style={circleWrapperStyle}>
               <CountdownCircle
                 seconds={seconds}
@@ -62,7 +63,7 @@ const cardStyle: React.CSSProperties = {
   borderRadius: '24px',
   padding: '80px 230px',
   boxShadow: '0 10px 30px rgba(0,0,0,0.05), 0 1px 8px rgba(0,0,0,0.02)',
-  maxWidth: '1000px',
+  maxWidth: '1000px',  
   width: '100%',
   margin: '0 auto',
   display: 'flex',
@@ -80,7 +81,7 @@ const countdownBoxStyle: React.CSSProperties = {
 };
 
 const countdownTitleStyle: React.CSSProperties = {
-  fontSize: '24px',
+  fontSize: '24px',    
   marginBottom: '30px',
   color: '#2D3E50',
   fontWeight: '600',

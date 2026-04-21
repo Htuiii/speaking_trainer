@@ -27,7 +27,6 @@ export interface ThemeColors {
   buttonHover: string;
 }
 
-// Базовые константы, если они повторяются
 const baseColors = {
   primary: '#1D3551',
   secondary: '#467AB6',
@@ -39,7 +38,7 @@ export const lightTheme: ThemeColors = {
   sidebarActiveBg: '#E2EAF3',     // Голубоватый фон активного пункта
   activeText: baseColors.secondary, // Цвет "Выберите тему"
   titleText: baseColors.primary,   // Цвет заголовков
-  cardBg: '#FFFFFF',
+  cardBg: '#F1F8FF',
   background: '#E5F2FF',          // Светло-голубой фон основного контента
   mutedText: '#64748B',           // Серый текст описания
   border: '#E2E8F0',              // Цвет разделителей
@@ -48,7 +47,6 @@ export const lightTheme: ThemeColors = {
   buttonHover: '#7EB2EE',   // Цвет кнопок при наведении
 };
 
-// Заготовка для темной темы (потом просто поменяешь значения)
 export const darkTheme: ThemeColors = {
   headerBg: '#0F172A',
   sidebarBg: '#1E293B',
