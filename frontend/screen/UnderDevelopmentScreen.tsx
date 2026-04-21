@@ -46,6 +46,7 @@ export const UnderDevelopmentScreen: React.FC<UnderDevelopmentScreenProps> = ({
   const styles = useMemo(() => buildLocalStyles(mounted, s), [mounted, s]);
 
   return (
+    <>
       <div style={styles.wrapper}>
         <div style={styles.card}>
           <div style={styles.iconStage}>
