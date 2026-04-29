@@ -11,7 +11,6 @@ export default function InterviewTask1Screen() {
   const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Управление размерами
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
@@ -75,7 +74,6 @@ export default function InterviewTask1Screen() {
         )}
 
         <main style={s.main}>
-          {/* Контент конкретного задания (в данном случае "в разработке") */}
           <UnderDevelopmentScreen taskNumber={1} colors={colors} s={s} />
         </main>
       </div>
@@ -117,11 +115,10 @@ function buildPageStyles(
       flex: 1,
       padding: isMobile ? '10px 16px' : '25px 40px',
       position: 'relative',
-      overflow: 'hidden', // Гарантируем отсутствие скролла в контенте
+      overflow: 'hidden', 
       display: 'flex',
       flexDirection: 'column',
     },
-    // Твои стили шрифтов для проброса в дочерние компоненты
     h1: {
       fontSize: isMobile ? '24px' : isSmall ? '32px' : '44px',
       color: '#1D3551',

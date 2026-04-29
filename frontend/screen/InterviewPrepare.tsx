@@ -71,7 +71,7 @@ export const InterviewPrepare: React.FC<InterviewPrepareProps> = ({ colors, s, o
                 ...styles.finishBtn, 
                 backgroundColor: '#929EAC', 
                 cursor: 'not-allowed',      
-                opacity: 0.8                // Дополнительная визуальная "тусклость"
+                opacity: 0.8               
               }}
             >
               Завершить

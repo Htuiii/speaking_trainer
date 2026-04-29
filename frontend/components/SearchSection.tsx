@@ -10,7 +10,6 @@ interface SearchSectionProps {
   onChange: (val: string) => void;
 }
 
-// 1. Сначала объявляем компонент как обычную функцию
 const SearchSectionComponent: React.FC<SearchSectionProps> = ({ colors, isMobile, value, onChange }) => {
   return (
     <div style={{
@@ -58,10 +57,8 @@ const SearchSectionComponent: React.FC<SearchSectionProps> = ({ colors, isMobile
   );
 };
 
-// 2. Экспортируем обернутый в memo компонент
 export const SearchSection = memo(SearchSectionComponent);
 
-// Название для отладки
 SearchSection.displayName = 'SearchSection';
 
 const SearchIcon: React.FC<{ size?: number; color?: string }> = ({ size = 24, color = "currentColor" }) => (

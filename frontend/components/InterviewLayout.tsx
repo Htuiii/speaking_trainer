@@ -27,7 +27,6 @@ export const InterviewLayout: React.FC<InterviewLayoutProps> = ({
       <Header colors={colors} />
       
       <div style={layoutStyles.contentRow}>
-        {/* Sidebar */}
         <div style={{
           ...layoutStyles.sidebarContainer,
           display: (isSmallScreen && !isSidebarOpen) ? 'none' : 'block',
@@ -36,7 +35,6 @@ export const InterviewLayout: React.FC<InterviewLayoutProps> = ({
           <Sidebar colors={colors} onSelectTask={onSelectTask} />
         </div>
 
-        {/* Overlay для мобилки */}
         {isSmallScreen && isSidebarOpen && (
           <div 
             style={layoutStyles.overlay} 
@@ -44,9 +42,7 @@ export const InterviewLayout: React.FC<InterviewLayoutProps> = ({
           />
         )}
 
-        {/* Основная рабочая область */}
         <main style={layoutStyles.mainArea}>
-           {/* Твоя белая плашка теперь здесь как часть лейаута */}
            <div style={layoutStyles.whiteSheet}>
               {children}
            </div>

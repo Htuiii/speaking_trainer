@@ -36,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ colors, activeTask = 3, onSele
         <div style={styles.subListContainer}>
           <div style={{ ...styles.verticalLine, backgroundColor: colors.border }} />
           {[1, 2, 3, 4].map((id) => {
-            const isActive = id === activeTask; // теперь активность определяется пропом
+            const isActive = id === activeTask;
             return (
               <div
                 key={id}

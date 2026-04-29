@@ -5,16 +5,15 @@ import { ThemeColors } from '../theme/colors';
 
 interface InterviewCardProps {
   title: string;
-  img: string; // Изменено: теперь это просто строка
+  img: string;
   desc: string;
-  micIcon: string | { src: string }; // Гибкий тип для поддержки и строк, и старых импортов
+  micIcon: string | { src: string };
   colors: ThemeColors;
 }
 
 export const InterviewCard = memo(({ title, img, desc, micIcon, colors }: InterviewCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Определяем путь для иконки микрофона (если это объект из импорта или просто строка)
   const micSrc = typeof micIcon === 'string' ? micIcon : micIcon.src;
 
   return (
@@ -30,7 +29,6 @@ export const InterviewCard = memo(({ title, img, desc, micIcon, colors }: Interv
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={styles.imageContainer}>
-        {/* Изменено: используем img напрямую без .src */}
         <img src={img} alt={title} style={styles.image} loading="lazy" />
       </div>
       
@@ -39,7 +37,6 @@ export const InterviewCard = memo(({ title, img, desc, micIcon, colors }: Interv
           <div style={styles.titleRow}>
             <h3 style={styles.title}>{title}</h3>
             <div style={styles.micContainer}>
-              {/* Изменено: используем micSrc */}
               <img src={micSrc} alt="mic" style={styles.micIcon} />
             </div>
           </div>
