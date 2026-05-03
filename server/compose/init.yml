@@ -1,0 +1,48 @@
+services:
+  kafka-topics-init:
+    image: apache/kafka:4.0.0
+    container_name: speaking_kafka_topics_init
+    networks:
+      - speaking-network
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        until /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list > /dev/null 2>&1; do
+          sleep 2
+        done
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic "$${KAFKA_ANSWER_UPLOADED_TOPIC}" --partitions 1 --replication-factor 1
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic "$${KAFKA_FEEDBACK_CREATED_TOPIC}" --partitions 1 --replication-factor 1
+    environment:
+      KAFKA_ANSWER_UPLOADED_TOPIC: ${KAFKA_ANSWER_UPLOADED_TOPIC:-answer.uploaded}
+      KAFKA_FEEDBACK_CREATED_TOPIC: ${KAFKA_FEEDBACK_CREATED_TOPIC:-feedback.created}
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: "no"
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: speaking_minio_init
+    networks:
+      - speaking-network
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        until mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}" > /dev/null 2>&1; do
+          sleep 2
+        done
+        mc mb --ignore-existing "local/$${MINIO_CONTENT_BUCKET}"
+        mc mb --ignore-existing "local/$${MINIO_ANSWERS_BUCKET}"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_CONTENT_BUCKET: ${MINIO_CONTENT_BUCKET:-speaking-content-assets}
+      MINIO_ANSWERS_BUCKET: ${MINIO_ANSWERS_BUCKET:-speaking-user-answers}
+    depends_on:
+      minio:
+        condition: service_started
+    restart: "no"
