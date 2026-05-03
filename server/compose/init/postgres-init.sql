@@ -1,0 +1,9 @@
+CREATE DATABASE auth_db;
+CREATE DATABASE questions_db;
+CREATE DATABASE answers_db;
+CREATE DATABASE ai_feedback_db;
+
+GRANT ALL PRIVILEGES ON DATABASE auth_db TO speaking;
+GRANT ALL PRIVILEGES ON DATABASE questions_db TO speaking;
+GRANT ALL PRIVILEGES ON DATABASE answers_db TO speaking;
+GRANT ALL PRIVILEGES ON DATABASE ai_feedback_db TO speaking;

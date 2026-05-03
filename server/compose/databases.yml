@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: speaking_postgres_local
+    hostname: postgres
+    networks:
+      speaking-network:
+        ipv4_address: 172.28.0.20
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-speaking}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-speaking}
+      POSTGRES_DB: ${POSTGRES_DB:-speaking_admin}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    command: ["-c", "max_connections=100"]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init/postgres-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-speaking} -d ${POSTGRES_DB:-speaking_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
