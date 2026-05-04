@@ -1,0 +1,24 @@
+services:
+  gateway:
+    build:
+      context: ..
+      dockerfile: gateway/Dockerfile
+    container_name: speaking_gateway
+    hostname: gateway
+    networks:
+      - speaking-network
+    ports:
+      - "${PORT:-4000}:8000"
+    environment:
+      CLIENT_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:3000}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3).read()\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped

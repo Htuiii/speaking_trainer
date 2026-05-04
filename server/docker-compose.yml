@@ -3,6 +3,7 @@ include:
   - ./compose/messaging.yml
   - ./compose/infrastructure.yml
   - ./compose/init.yml
+  - ./compose/services.yml
 
 networks:
   speaking-network:

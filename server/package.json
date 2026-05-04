@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "docker compose up --build gateway",
+    "start": "docker compose up --build gateway",
+    "compose:config": "docker compose config",
+    "compose:up": "docker compose up --build",
+    "compose:down": "docker compose down"
+  }
+}
