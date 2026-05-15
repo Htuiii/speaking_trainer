@@ -2,6 +2,7 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.questions import questions_router
 
 app = FastAPI(title="Speaking Trainer API Gateway")
 
@@ -15,6 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(questions_router)
 
 @app.get("/health")
 async def health_check():
